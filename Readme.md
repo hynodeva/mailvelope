@@ -10,8 +10,8 @@ Mailvelope uses the following OpenPGP implementation
 
 ## Status
 
-  - Chrome Extension: _beta_
-  - Firefox Addon: _alpha_
+  - Chrome Extension: _beta_ (0.6.4)
+  - Firefox Addon: _alpha_ (0.6s)
 
 ## Installation
 

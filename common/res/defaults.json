@@ -43,14 +43,24 @@
           "frame": "*.mail.live.com"
         }
       ]
-    }
-  ],
+    },
+   {
+      "active": true,
+      "site": "facebook.com",
+      "frames": [
+        {
+          "scan": true,
+          "frame": "*.facebook.com"
+        }
+      ]
+    }	
+	],
   "preferences": {
     "security": {
       "editor_mode": "external",
       "display_decrypted": "inline",
       "password_cache": false,
-      "password_timeout": 30
+      "password_timeout": 5
     },
     "general": {
       "editor_type": "plain"
