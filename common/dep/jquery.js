@@ -33,6 +33,7 @@ var
 	location = window.location,
 	document = window.document,
 	docElem = document.documentElement,
+	navigator = window.navigator,
 
 	// Map over jQuery in case of overwrite
 	_jQuery = window.jQuery,

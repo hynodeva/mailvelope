@@ -1,3 +1,33 @@
+// Firefox Addon compatibility layer
+
+var ss = require('sdk/simple-storage');
+var cr = require("chrome");
+var crypto = cr.Cc["@mozilla.org/security/crypto;1"].createInstance(cr.Ci.nsIDOMCrypto);
+
+var window = {};
+
+window.navigator = {};
+
+window.navigator.appName = 'Netscape';
+
+window.localStorage = {};
+
+window.localStorage.setItem = function(id, str) {
+  ss.storage[id] = str;
+}
+
+window.localStorage.getItem = function(id) {
+  return ss.storage[id] || null;
+}
+
+window.crypto = {};
+
+window.crypto.getRandomValues = function(buf) {
+  return crypto.getRandomValues(buf);  
+}
+
+
+
 // GPG4Browsers - An OpenPGP implementation in javascript
 // Copyright (C) 2011 Recurity Labs GmbH
 // 
@@ -294,11 +324,11 @@ function am3(i,x,w,j,c,n) {
   }
   return c;
 }
-if(j_lm && (navigator.appName == "Microsoft Internet Explorer")) {
+if(j_lm && (window.navigator.appName == "Microsoft Internet Explorer")) {
   BigInteger.prototype.am = am2;
   dbits = 30;
 }
-else if(j_lm && (navigator.appName != "Netscape")) {
+else if(j_lm && (window.navigator.appName != "Netscape")) {
   BigInteger.prototype.am = am1;
   dbits = 26;
 }
@@ -13444,3 +13474,20 @@ var Util = function() {
  * an instance that should be used. 
  */
 var util = new Util();
+// GPG4Browsers - An OpenPGP implementation in javascript
+// Copyright (C) 2011 Recurity Labs GmbH
+// 
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the GNU Lesser General Public
+// License as published by the Free Software Foundation; either
+// version 2.1 of the License, or (at your option) any later version.
+// 
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+// Lesser General Public License for more details.
+// 
+// You should have received a copy of the GNU Lesser General Public
+// License along with this library; if not, write to the Free Software
+// Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+//
