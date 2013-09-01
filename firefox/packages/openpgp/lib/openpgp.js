@@ -1,14 +1,29 @@
 // Firefox Addon compatibility layer
 
+var {Ci} = require('chrome');
 var ss = require('sdk/simple-storage');
+var msutil = require('sdk/window/utils');
+var windows = require('sdk/windows').browserWindows;
+var acwindow = msutil.getMostRecentBrowserWindow();
+var window = acwindow.content;
+
 var cr = require("chrome");
 var crypto = cr.Cc["@mozilla.org/security/crypto;1"].createInstance(cr.Ci.nsIDOMCrypto);
 
-var window = {};
+var haswindow=true;
+if(!window)
+{
+    haswindow=false;
+    //window = {};
+}
 
+if(!haswindow)
+{
+window = {};
 window.navigator = {};
 
 window.navigator.appName = 'Netscape';
+
 
 window.localStorage = {};
 
@@ -18,6 +33,8 @@ window.localStorage.setItem = function(id, str) {
 
 window.localStorage.getItem = function(id) {
   return ss.storage[id] || null;
+}
+
 }
 
 window.crypto = {};
